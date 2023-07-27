@@ -20,4 +20,15 @@ public class RequestToTmdbApiService {
 
         return resp.getBody();
     }
+
+    public MovieListResultDto listPopularMovies(){
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<MovieListResultDto> resp = restTemplate.getForEntity(format("%s/movie/popular%s",
+                BASE_API_URL, API_KEY_QUERY_PARAM), MovieListResultDto.class);
+
+        return resp.getBody();
+    }
+
+
 }
