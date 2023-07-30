@@ -34,4 +34,7 @@ public class UserModel {
     public void addWatchedMovie(Movie movie){
         this.watchedMovies.add(movie);
     }
+    public void removeWatchedMovie(Movie movie) {
+        this.watchedMovies.remove(movie);
+    }
 }
