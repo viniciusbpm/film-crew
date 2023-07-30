@@ -20,7 +20,6 @@ public class GetLoggedUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
         return userRepository.findByEmail(email)
                 .map(UserSecurity::new)
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid credentials"));

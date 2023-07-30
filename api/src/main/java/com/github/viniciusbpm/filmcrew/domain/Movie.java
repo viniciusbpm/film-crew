@@ -6,19 +6,17 @@ import javax.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Getter
 @Setter
-public class MovieModel {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
+@Embeddable
+public class Movie {
+    @Column(name="id", nullable = false)
     private Long id;
     @Column(name="title", nullable = false)
     private String title;
