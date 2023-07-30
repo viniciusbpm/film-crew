@@ -23,4 +23,5 @@ public class UserModel {
     private String password;
     private String profilePicture;
     private boolean active;
+
 }
