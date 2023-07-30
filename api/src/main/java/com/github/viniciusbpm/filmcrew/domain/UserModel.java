@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 import java.util.List;
 
-import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Builder
@@ -29,11 +28,13 @@ public class UserModel {
     private String profilePicture;
     @Column(name="active", nullable = false)
     private boolean active;
-    @OneToMany
-    @JoinColumn(name = "watched_movies")
-    private List<MovieModel> watchedMovies;
+    @ElementCollection
+    private List<Movie> watchedMovies;
 
-    public void addWatchedMovie(MovieModel movie){
+    public void addWatchedMovie(Movie movie){
         this.watchedMovies.add(movie);
+    }
+    public void removeWatchedMovie(Movie movie) {
+        this.watchedMovies.remove(movie);
     }
 }
