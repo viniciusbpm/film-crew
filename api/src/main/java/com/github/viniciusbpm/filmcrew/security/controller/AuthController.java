@@ -1,8 +1,9 @@
 package com.github.viniciusbpm.filmcrew.security.controller;
 
+import com.github.viniciusbpm.filmcrew.security.controller.request.LoginRequest;
 import com.github.viniciusbpm.filmcrew.security.controller.request.UserRequest;
 import com.github.viniciusbpm.filmcrew.security.controller.response.UserResponse;
-import com.github.viniciusbpm.filmcrew.security.service.AuthenticatedUserService;
+import com.github.viniciusbpm.filmcrew.security.service.LoginService;
 import com.github.viniciusbpm.filmcrew.security.service.RegisterUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,14 +17,14 @@ import javax.validation.Valid;
 @RequestMapping("/auth")
 public class AuthController {
     @Autowired
-    private AuthenticatedUserService authenticatedUserService;
+    private LoginService loginService;
 
     @Autowired
     private RegisterUserService registerUserService;
 
     @PostMapping("/login")
-    public UserResponse login() {
-        return authenticatedUserService.getResponse();
+    public UserResponse login(@RequestBody LoginRequest request) {
+        return loginService.login(request);
     }
 
     @PostMapping("/register")
