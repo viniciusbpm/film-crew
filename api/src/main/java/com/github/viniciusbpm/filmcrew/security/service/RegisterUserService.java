@@ -21,9 +21,13 @@ public class RegisterUserService {
     @Autowired
     private ValidateUniqueEmailService validateUniqueEmailService;
 
+    @Autowired
+    private ValidateUniqueUsernameService validateUniqueUsernameService;
+
     @Transactional
     public UserResponse register(UserRequest request){
         validateUniqueEmailService.validate(request.getEmail());
+        validateUniqueUsernameService.validate(request.getUsername());
 
         UserModel user = UserMapper.toEntity(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
