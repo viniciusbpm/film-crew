@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package com.github.viniciusbpm.filmcrew.security.service;
 
 import com.github.viniciusbpm.filmcrew.repository.UserRepository;
@@ -12,4 +13,7 @@ public class ValidateUserExistsService {
     public void validate(String username){
 
     }
+=======
+package com.github.viniciusbpm.filmcrew.security.service;public class ValidateUserExistsService {
+>>>>>>> Stashed changes
 }
