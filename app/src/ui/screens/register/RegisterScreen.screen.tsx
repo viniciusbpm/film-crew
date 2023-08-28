@@ -1,17 +1,20 @@
 import './index.css';
-import logo from '../../assets/img/logo.png';
+import logo from '../../../assets/img/logo.png';
+import Title from '../../components/title/Title.component';
+import FormInput from '../../components/form-input/FormInput.component';
+import Button from '../../components/button/Button.component';
 import { useState } from 'react';
-import FormInput from '../components/form-input/FormInput.component';
-import Button from '../components/button/Button.component';
-import useAuthFunctions from '../../api/hooks/useAuthFunctions.hooks';
+import useAuthFunctions from '../../../api/hooks/useAuthFunctions.hooks';
+import { toast } from 'react-hot-toast';
 import { AxiosError } from 'axios';
-import toast from 'react-hot-toast';
 
-const LoginScreen = () => {
-  const { login } = useAuthFunctions();
+const RegisterScreen = () => {
+  const { register } = useAuthFunctions();
   const [loginInput, setLoginInput] = useState({
     username: { value: '' },
+    email: { value: '' },
     password: { value: '' },
+    profilePicture: { value: '' },
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,11 +28,12 @@ const LoginScreen = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const user = await login(
+      const user = await register(
         loginInput.username.value,
-        loginInput.password.value
+        loginInput.email.value,
+        loginInput.password.value,
+        loginInput.profilePicture.value
       );
-      console.log(user);
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(error.response?.data.message);
@@ -43,7 +47,9 @@ const LoginScreen = () => {
         <img src={logo} alt="Film Crew logo" className="logo" />
       </div>
       <div className="login-box-right-side">
-        <h2>Login</h2>
+        <Title type="h2" size="medium">
+          Register
+        </Title>
         <form className="login-form" onSubmit={handleSubmit}>
           <FormInput
             label="Username:"
@@ -54,6 +60,14 @@ const LoginScreen = () => {
             required
           />
           <FormInput
+            label="Email:"
+            type="email"
+            onChange={handleChange}
+            name="email"
+            id="email"
+            required
+          />
+          <FormInput
             label="Password:"
             type="password"
             onChange={handleChange}
@@ -61,12 +75,20 @@ const LoginScreen = () => {
             id="password"
             required
           />
-          <Button content="Login" />
+          <FormInput
+            label="Profile picture:"
+            type="text"
+            onChange={handleChange}
+            name="text"
+            id="text"
+            required
+          />
+          <Button content="Register" />
         </form>
         <p>
-          Doesn't have an account yet?{' '}
+          Already have an account?{' '}
           <a href="/" className="register-link">
-            Register here
+            Login here
           </a>
         </p>
       </div>
@@ -74,4 +96,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;

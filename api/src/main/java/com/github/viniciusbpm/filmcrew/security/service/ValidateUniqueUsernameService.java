@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 package com.github.viniciusbpm.filmcrew.security.service;
 
 import com.github.viniciusbpm.filmcrew.domain.UserModel;
@@ -23,7 +22,4 @@ public class ValidateUniqueUsernameService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, USERNAME_TAKEN_MESSAGE);
         }
     }
-=======
-package com.github.viniciusbpm.filmcrew.security.service;public class ValidateUniqueUsernameService {
->>>>>>> Stashed changes
 }
